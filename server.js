@@ -1,8 +1,16 @@
 const express = require('express')
+const dotenv = require('dotenv')
+dotenv.config({path:'./config/config.env'})
 
+
+// connect to DB
+require('./config/db')()
 
 
 const app = express()
+
+//init middleware
+app.use(express.json({extended:false}))
 
 app.get('/',async(req,res)=> res.json({msg:'Welcome to the Contact Keeper API'}))
 
